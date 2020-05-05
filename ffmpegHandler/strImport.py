@@ -17,16 +17,16 @@ mycursor.execute(sql)
 mydb.commit()
 def pp(arg):
     print(json.dumps(arg, indent = '\t', separators=['\t', ':\t']))
+def processText(text):
+    cleanr = re.compile('<.*?>')
+    text = re.sub(cleanr, '', text)
+    cleanr = re.compile('\[.*?\]')
+    text = re.sub(cleanr, '', text)
+    cleanr = re.compile('[.,!?\\\"]')
+    text = re.sub(cleanr, '', text)
+    return text.replace('\n', ' ').replace('-', ' ').strip().lower()
 
 def importSrt(f):
-    def processText(text):
-        cleanr = re.compile('<.*?>')
-        text = re.sub(cleanr, '', text)
-        cleanr = re.compile('\[.*?\]')
-        text = re.sub(cleanr, '', text)
-        cleanr = re.compile('[.,!?\\\"]')
-        text = re.sub(cleanr, '', text)
-        return text.replace('\n', ' ').replace('-', ' ').strip().lower()
     def timecode2frame(timecode):
         data = timecode.strip().split(':')
         try:

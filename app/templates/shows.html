@@ -1,0 +1,82 @@
+<!doctype html>
+<head>
+  <title>ClipSelect</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>ClipSelect</h1>
+    <div class="card-panel">
+      <nav>
+        <div class="nav-wrapper teal">
+          <div class="col s12 center-align">
+            <a href="/index" class="breadcrumb">Main page</a>
+            <a href="" class="breadcrumb">{{ title }}</a>
+          </div>
+        </div>
+      </nav>
+      <div class="divider"></div>
+      <div class="section">
+        <div class="row">
+          <div class="col s12 m6">
+            <h5>Search:</h5>
+            <div class="divider"></div>
+            <div class="section">
+              {% if succcess %}
+                <p class="flow-text red-text">Did not find quote! Try a shorter one!</p>
+              {% endif %}
+              <form action="">
+                <div class="input-field">
+                  <input placeholder="quote" id="quote" type="text" length="30" name="quote" required>
+                  <label>Punctuation, case and dashes are ignored.</label>
+                </div>
+                <div class="input-field">
+                  <select id="episode" name="episode">
+                    <option value="ALL" selected>any</option>
+                    {% for episode in episodes %}
+                      <option value="{{ episode.name }}">{{ episode.name }}</option>
+                    {% endfor %}
+                  </select>
+                  <label>Select episode to search in.</label>
+                </div>
+                <script>
+                  $(document).ready(function(){
+                    $('select').formSelect();
+                    $('input#input_text').characterCounter();
+                  });
+
+                </script>
+                <div style="margin-top:2em"></div>
+                <div class="input-field">
+                  <button class="btn waves-effect waves-light right-align" type="submit" name="action">Search
+                    <i class="material-icons right">send</i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          {% if quotes %}
+          <div class="col s12 m6">
+            <h5>Results:</h5>
+          </div>
+          {% for quote in quotes %}
+          <div class="col s12 m6">
+            <div class="card-panel hoverable">
+              <h6>{{ quote.episode }}</h6>
+              <div class="divider"></div>
+              <div class="section">
+                <span class="flow-text">{{ quote.content }}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -77,14 +77,19 @@ for root, directories, files in walk(args.directory):
     # ignore dotfiles
     newFiles = list()
     for fileName in files:
-        if fileName[0] != '.':
+        if fileName[0] != '.' and not (fileName.endswith('.jpg') or fileName.endswith('.nfo') or fileName.endswith('.png')):
             newFiles.append(fileName)
     if len(newFiles) == 0:
         raise Exception('No files detected')
     print('Detected {0} files'.format(len(newFiles)))
     out_json = strip_common_prefix_suffix(newFiles)
+    if min([len(x) for k, x in out_json.items()]) == 0:
+        out_json = dict()
+        for x in newFiles:
+            out_json[x] = x.split('.', 1)[0]
     break # only handle first level
-
+pp(out_json)
+input('Press enter if this is correct')
 try:
     databaseFolder = path.join(databaseFolder, args.title)
     dir_path(databaseFolder)

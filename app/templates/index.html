@@ -1,0 +1,34 @@
+<!doctype html>
+<head>
+  <title>ClipSelect</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="container">
+    <h1>ClipSelect</h1>
+    <div class="card-panel">
+      <p>
+        <p class="flow-text">Welcome to ClipSelect, a service where I try to provide you with gifs from your favorite shows.</br></br>
+          Select one show from the list to continue:</p>
+      </p>
+      <div class="row">
+        {% for show in shows %}
+          <a href="{{ show.url }}">
+            <div class="col s12 m4">
+              <div class="card-panel teal accent-2 hoverable" style="margin-left: 1ex; margin-right:1ex">
+                <p class="flow-text center-align">{{ show.name }}</p>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="card-panel">
+      <p class="flow-text">Created by <code>u/hakiergrzonzo.</code></p>
+      <p class="flow-text">Source code available on <a href="https://github.com/HakierGrzonzo/ClipSelect">Github.</a></p>
+      <p class="flow-text">Content provided under <em>fair use</em> as specified in <em>polish</em> copytright law. You can learn more <a href="https://pl.wikipedia.org/wiki/Dozwolony_u%C5%BCytek_publiczny#Prawo_cytatu_i_podobne">here.</a></p>
+    </div>
+  </div>
+</body>
