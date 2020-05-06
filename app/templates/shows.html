@@ -6,6 +6,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="{{ url_for('static', filename='javascript/contextLoader.js')}}"></script>
+  <script src="{{ url_for('static', filename='javascript/anime.min.js')}}"></script>
 </head>
 <body>
   <div class="container">
@@ -26,9 +28,6 @@
             <h5>Search:</h5>
             <div class="divider"></div>
             <div class="section">
-              {% if succcess %}
-                <p class="flow-text red-text">Did not find quote! Try a shorter one!</p>
-              {% endif %}
               <form action="">
                 <div class="input-field">
                   <input placeholder="quote" id="quote" type="text" length="30" name="quote" required>
@@ -53,7 +52,7 @@
                 <div style="margin-top:2em"></div>
                 <div class="input-field">
                   <button class="btn waves-effect waves-light right-align" type="submit" name="action">Search
-                    <i class="material-icons right">send</i>
+                    <i class="material-icons right">search</i>
                   </button>
                 </div>
               </form>
@@ -64,13 +63,21 @@
             <h5>Results:</h5>
           </div>
           {% for quote in quotes %}
-          <div class="col s12 m6">
-            <div class="card-panel hoverable">
+          <div class="col s12 m6" id="{{ quote.id }}">
+            <div onmouseenter="loadContext({{ quote.id }})" class="card-panel hoverable">
               <h6>{{ quote.episode }}</h6>
               <div class="divider"></div>
               <div class="section">
-                <span class="flow-text">{{ quote.content }}</span>
+                <div class="preQuote" style="transform: scale(0);">
+                  <span class="flow-text"></span>
+                </div>
+                <span class="flow-text">{{ quote.content | safe }}</span>
+                <div class="postQuote" style="transform: scale(0);">
+                  <span class="flow-text"></span>
+                </div>
+                <div class="divider"></div>
               </div>
+              <a class="btn waves-effect waves-light" href="/gif/{{ quote.id }}">Download<i class="material-icons right">subdirectory_arrow_left</i></a>
             </div>
           </div>
           {% endfor %}

@@ -43,7 +43,7 @@ def importSrt(f):
             text = processText(sub[2])
             if len(text) > 0:
                 timecodes = [timecode2frame(x) for x in sub[1].split('-->')]
-                entry = (int(sub[0]), timecodes[0], timecodes[1], text)
+                entry = (int(sub[0]), timecodes[0], timecodes[1], text, sub[2])
                 res.append(entry)
     return tuple(res)
 
@@ -55,7 +55,7 @@ def importFromRoot(dir, series):
             with open(path.join(path.join(path.join(databaseFolder, r), dir), 'sub.srt')) as f:
                 [records.append(x) for x in [(series, dir) +  x for x in importSrt(f.read())]]
         print('Adding {0} subtitles from {1}'.format(len(records), series))
-        sql = "INSERT INTO subs (series, episode, n, begin_frame, end_frame, content) VALUES (%s, %s, %s, %s, %s, %s)"
+        sql = "INSERT INTO subs (series, episode, n, begin_frame, end_frame, content, raw_content) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         for x in records:
             mycursor.execute(sql, x)
         mydb.commit()
