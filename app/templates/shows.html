@@ -51,7 +51,7 @@
                 </script>
                 <div style="margin-top:2em"></div>
                 <div class="input-field">
-                  <button class="btn waves-effect waves-light right-align" type="submit" name="action">Search
+                  <button class="btn waves-effect waves-light secondary-content" type="submit" name="action">Search
                     <i class="material-icons right">search</i>
                   </button>
                 </div>
@@ -75,9 +75,12 @@
                 <div class="postQuote" style="transform: scale(0);">
                   <span class="flow-text"></span>
                 </div>
-                <div class="divider"></div>
               </div>
-              <a class="btn waves-effect waves-light" href="/gif/{{ quote.id }}">Download<i class="material-icons right">subdirectory_arrow_left</i></a>
+              <div class="card-action right-align">
+                <a class="btn waves-effect waves-light" href="/gif/{{ quote.id }}">Get gif
+                  <i class="material-icons right">subdirectory_arrow_left</i>
+                </a>
+              </div>
             </div>
           </div>
           {% endfor %}

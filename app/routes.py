@@ -60,3 +60,14 @@ def shows(title):
         quotes = list([{'id': num, 'episode': episode, 'content': content.replace('\n', '</br>')} for num, episode, content in cursor.fetchall()])
     result = [{'name': x[0], 'url': 'shows/{0}/{1}'.format(quote(title, safe=''), quote(x[0], safe=''))} for x in result]
     return render_template('shows.html', episodes = result, title=title, quotes = quotes)
+
+@app.route('/gif/<id>')
+def gifSite(id):
+    sql = 'SELECT result_filepath, status FROM jobs WHERE gif_id = %s'
+    cursor.execute(sql, (int(id), ))
+    job = cursor.fetchall()
+    if len(job) == 0:
+        sql = 'INSERT INTO jobs (gif_id, status) VALUES (%s, %s)'
+        cursor.execute(sql, (int(id), 0))
+        mydb.commit()
+    return jsonify(job)
