@@ -5,7 +5,7 @@ from multiprocessing import Pool, cpu_count
 parameters = json.load(open('parameters.json'))
 databaseFolder = os.path.expanduser(parameters['databaseFolder'])
 
-process_count = int(cpu_count() // 4)
+process_count = int(cpu_count() // 2)
 
 try:
     os.mkdir(os.path.join(databaseFolder, 'gifs'))
@@ -19,7 +19,7 @@ def processGif(data):
     begin_frame, end_frame, series, episode, id = data
     print('processing {} from {}'.format(id, episode))
     pathToImages = os.path.join(databaseFolder, series, episode)
-    images = [os.path.join(pathToImages, 'out{:05d}.jpg'.format(x)) for x in range(int(begin_frame), int(end_frame - 2))]
+    images = [os.path.join(pathToImages, 'out{:05d}.jpg'.format(x)) for x in range(int(begin_frame + 2), int(end_frame - 2))]
     imageString = str()
     for image in images:
         imageString += quote(image) + ' '
