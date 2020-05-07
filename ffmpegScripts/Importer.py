@@ -1,18 +1,19 @@
 from os import path, walk
 import mysql.connector, json, re
 fps = 10
+parameters = json.load(open('parameters.json'))
+databaseFolder = path.expanduser(parameters['databaseFolder'])
 mydb = mysql.connector.connect(
-    host="192.168.152.113",
-    port="3308",
-    user="root",
-    passwd="proszeniehackowac",
-    database="debug",
+    host = parameters['mysql_host'],
+    port = parameters['mysql_host_port'],
+    user = "root",
+    passwd = parameters['mysql_password'],
+    database = "debug",
     auth_plugin="mysql_native_password"
 )
 print('Connected to DB\nClearing table subs')
-databaseFolder = path.expanduser('/mnt/hdd/ClipSelectDB')
 mycursor = mydb.cursor()
-sql = "TRUNCATE TABLE subs"
+sql = 'TRUNCATE TABLE subs'
 mycursor.execute(sql)
 mydb.commit()
 def pp(arg):
