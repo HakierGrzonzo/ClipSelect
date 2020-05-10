@@ -1,3 +1,7 @@
+"""Converts videos in folder to pngs at 10fps 1024x576 and creates folder structure.
+Also extracts subtitles to .srt files
+uses ffmpeg"""
+
 import argparse
 from os import system, path, walk, mkdir
 from shutil import rmtree

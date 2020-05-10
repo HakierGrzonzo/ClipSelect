@@ -1,3 +1,5 @@
+"""Script that uses ImageMaigick to convert pngs to gifs"""
+
 import mysql.connector
 import os, json, time, re
 from multiprocessing import Pool, cpu_count
@@ -16,6 +18,7 @@ def quote(astr):
     return re.sub("(!|\$|#|&|\"|\'|\(|\)|\||<|>|`|\\\|;)", r"\\\1", astr).replace(' ', r"\ ")
 
 def processGif(data):
+    """Returns relative path to gif for job query"""
     begin_frame, end_frame, series, episode, id = data
     print('processing {} from {}'.format(id, episode))
     pathToImages = os.path.join(databaseFolder, series, episode)
@@ -26,6 +29,7 @@ def processGif(data):
     imageString = imageString.strip()
     db_path = os.path.join('gifs', str(id)+'.gif')
     resultPath = os.path.join(databaseFolder, db_path)
+    # make gif
     x = os.system('convert -fuzz 1% -delay 1x10 -loop 0 {0} -layers OptimizeTransparency {1}'.format(imageString, resultPath))
     if x == 0:
         return db_path, id
@@ -35,6 +39,7 @@ def processGif(data):
 workers = Pool(process_count)
 
 def doWork():
+    """fetches work and if available does it"""
     mydb = mysql.connector.connect(
         host = parameters['mysql_host'],
         port = parameters['mysql_host_port'],

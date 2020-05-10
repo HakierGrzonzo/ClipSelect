@@ -1,3 +1,5 @@
+"""Imports .srt files to Mysql database"""
+
 from os import path, walk
 import mysql.connector, json, re
 fps = 10

@@ -14,7 +14,10 @@
       <h5>Your request is being processed</h5>
       <div class="divider"></div>
       <div class="section">
-        <p class="flow-text">Please enjoy this picture while I generate the gif for you.</p>
+        {% if jobs %}
+        <p class="flow-text">There are around {{ jobs }} gifs that are being processed right now.</p>
+        {% endif %}
+        <p class="flow-text">Please enjoy this picture while I generate the gif for you. This page will auto refresh when the gif is done.</p>
         <img src="https://www.randomdoggiegenerator.com/randomdoggie.php" class="center-align">
       </div>
     </div>

@@ -127,3 +127,5 @@ app/static/ClipSelectDB
 *.pid
 
 ffmpegScripts/parameters.json
+
+.flaskenv
