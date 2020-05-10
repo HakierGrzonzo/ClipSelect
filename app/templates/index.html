@@ -14,10 +14,17 @@
           Select one show from the list to continue:</p>
       </p>
       <div class="row">
+          <a href="/random">
+            <div class="col s12 m4">
+              <div class="card-panel teal accent-1 hoverable">
+                <p class="flow-text center-align">Random Gif</p>
+              </div>
+            </div>
+          </a>
         {% for show in shows %}
           <a href="{{ show.url }}">
             <div class="col s12 m4">
-              <div class="card-panel teal accent-2 hoverable" style="margin-left: 1ex; margin-right:1ex">
+              <div class="card-panel teal accent-2 hoverable">
                 <p class="flow-text center-align">{{ show.name }}</p>
               </div>
             </div>

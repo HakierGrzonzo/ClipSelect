@@ -127,3 +127,18 @@ def gifSite(id):
         cursor.close()
         mydb.close()
 
+@app.route('/random')
+def randomgif():
+    mydb = mysql.connect()
+    cursor = mydb.cursor()
+    try:
+        sql = 'SELECT jobs.result_filepath, jobs.gif_id, subs.series, subs.episode from jobs join subs on jobs.gif_id = subs.id where status = 1 ORDER BY RAND() LIMIT 1'
+        cursor.execute(sql)
+        filepath, id, series, episode = cursor.fetchone()
+        sql = 'UPDATE jobs set hits = 1+ hits where gif_id = %s'
+        cursor.execute(sql, (int(id),))
+        mydb.commit()
+        return render_template('random.html', image = path.join('static', 'ClipSelectDB', filepath), series = series, episode = episode)
+    finally:
+        cursor.close()
+        mydb.close()
