@@ -126,3 +126,5 @@ dmypy.json
 app/static/ClipSelectDB
 
 ffmpegScripts/parameters.json
+
+.flaskenv
