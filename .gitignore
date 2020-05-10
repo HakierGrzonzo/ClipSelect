@@ -124,3 +124,5 @@ dmypy.json
 .pyre/
 
 app/static/ClipSelectDB
+
+ffmpegScripts/parameters.json
