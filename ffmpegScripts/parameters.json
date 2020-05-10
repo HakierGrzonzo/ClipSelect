@@ -2,5 +2,6 @@
   "databaseFolder": "/home/webserver/ClipSelect/app/static/ClipSelectDB",
   "mysql_host": "192.168.152.113",
   "mysql_host_port": "3308",
+  "mysql_database": "production",
   "mysql_password": "proszeniehackowac"
 }

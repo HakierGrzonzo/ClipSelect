@@ -40,7 +40,7 @@ def doWork():
         port = parameters['mysql_host_port'],
         user = "root",
         passwd = parameters['mysql_password'],
-        database = "debug",
+        database = parameters['mysql_database'],
         auth_plugin="mysql_native_password"
     )
     cursor = mydb.cursor()
