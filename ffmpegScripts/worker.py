@@ -32,6 +32,7 @@ def processGif(data):
     else:
         raise Exception('oh shit')
 
+workers = Pool(process_count)
 
 def doWork():
     mydb = mysql.connector.connect(
@@ -51,7 +52,6 @@ def doWork():
     if len(work) > 0:
         print('processing {} queries'.format(len(work)))
         sql = 'UPDATE jobs SET status = 1, result_filepath = %s WHERE gif_id = %s'
-        workers = Pool(process_count)
         paths = workers.map(processGif, work)
         for path in paths:
             cursor.execute(sql, path)
