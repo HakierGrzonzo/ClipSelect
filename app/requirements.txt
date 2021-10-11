@@ -1,0 +1,4 @@
+flask
+mysql-connector-python
+cryptography
+Flask-MySQL==1.5.2

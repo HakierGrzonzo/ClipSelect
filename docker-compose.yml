@@ -1,0 +1,17 @@
+services:
+  site:
+    build:
+      dockerfile: ./Dockerfile.app
+      context: .
+    ports:
+      - "5000:5000"
+  db:
+    build:
+      dockerfile: ./Dockerfile.mysql
+      context: .
+    ports:
+      - "3306:3306"
+    volumes:
+      - "../mysql_db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: plsnohack

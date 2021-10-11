@@ -6,11 +6,11 @@ import mysql.connector
 from urllib.parse import quote
 
 mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_USER'] = 'admin'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'proszeniehackowac'
-app.config['MYSQL_DATABASE_DB'] = 'production'
-app.config['MYSQL_DATABASE_HOST'] = '192.168.152.113'
-app.config['MYSQL_DATABASE_PORT'] = 3308
+app.config['MYSQL_DATABASE_DB'] = 'clip'
+app.config['MYSQL_DATABASE_HOST'] = 'db'
+app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql.init_app(app)
 
 @app.route('/')
