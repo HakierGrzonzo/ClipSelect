@@ -58,7 +58,7 @@ def strip_common_prefix_suffix(filenames):
 parser = argparse.ArgumentParser(prog='ffmpegHandler')
 parser.add_argument('directory', type=dir_path)
 parser.add_argument('--title', type=str)
-databaseFolder = path.expanduser('/mnt/hdd/ClipSelectDB')
+databaseFolder = path.expanduser('~/ClipSelectDB')
 try:
     dir_path(databaseFolder)
 except NotADirectoryError:

@@ -5,6 +5,8 @@ services:
       context: .
     ports:
       - "5000:5000"
+    volumes:
+      - "clipdb:/app/static/ClipSelectDB"
   db:
     build:
       dockerfile: ./Dockerfile.mysql
@@ -15,3 +17,12 @@ services:
       - "../mysql_db:/var/lib/mysql"
     environment:
       MYSQL_ROOT_PASSWORD: plsnohack
+  worker:
+    build:
+      dockerfile: ./Dockerfile.worker
+      context: .
+    volumes:
+      - "clipdb:/ClipSelectDB"
+
+volumes:
+  clipdb:

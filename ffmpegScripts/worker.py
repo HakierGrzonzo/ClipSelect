@@ -43,7 +43,7 @@ def doWork():
     mydb = mysql.connector.connect(
         host = parameters['mysql_host'],
         port = parameters['mysql_host_port'],
-        user = "root",
+        user = "admin",
         passwd = parameters['mysql_password'],
         database = parameters['mysql_database'],
         auth_plugin="mysql_native_password"
@@ -71,6 +71,12 @@ def doWork():
 
 try:
     while True:
-        doWork()
+        try:
+            doWork()
+        except Exception as e:
+            print(e)
+            print("try to do that again")
+            time.sleep(10)
+
 except KeyboardInterrupt:
     pass

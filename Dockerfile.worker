@@ -1,0 +1,8 @@
+FROM archlinux:latest
+
+RUN pacman -Syu python python-mysql-connector imagemagick --noconfirm
+
+COPY ./ffmpegScripts /stuff
+
+WORKDIR /stuff
+ENTRYPOINT python3 worker.py

@@ -1,7 +1,7 @@
 {
-  "databaseFolder": "/mnt/hdd/ClipSelectDB",
-  "mysql_host": "192.168.152.113",
-  "mysql_host_port": "3308",
-  "mysql_database": "production",
+  "databaseFolder": "/ClipSelectDB",
+  "mysql_host": "db",
+  "mysql_host_port": "3306",
+  "mysql_database": "clip",
   "mysql_password": "proszeniehackowac"
 }
