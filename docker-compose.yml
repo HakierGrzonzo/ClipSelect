@@ -33,6 +33,7 @@ services:
       - "clipdb:/ClipSelectDB"
 
 volumes:
+  # change those to whatever you like
   clipdb:
     driver_opts:
       type: nfs
