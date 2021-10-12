@@ -2,7 +2,7 @@
 
 A website that generates gifs based on quotes found in subtitles.
 
-Currently hosted [here](http://grzegorzkoperwas.site:5000).
+Currently hosted [here](https://grzegorzkoperwas.site).
 
 ---------------
 
