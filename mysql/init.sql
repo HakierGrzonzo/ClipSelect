@@ -15,7 +15,7 @@ CREATE TABLE subs(
 CREATE TABLE jobs(
     job_id int primary key AUTO_INCREMENT,
     gif_id int,
-    result_filepath int,
+    result_filepath text,
     hits int,
     status int
 );

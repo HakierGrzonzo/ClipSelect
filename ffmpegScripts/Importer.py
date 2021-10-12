@@ -1,18 +1,25 @@
 """Imports .srt files to Mysql database"""
 
 from os import path, walk
+import time
 import mysql.connector, json, re
 fps = 10
 parameters = json.load(open('parameters.json'))
 databaseFolder = path.expanduser(parameters['databaseFolder'])
-mydb = mysql.connector.connect(
-    host = parameters['mysql_host'],
-    port = parameters['mysql_host_port'],
-    user = "admin",
-    passwd = parameters['mysql_password'],
-    database = parameters['mysql_database'],
-    auth_plugin="mysql_native_password"
-)
+mydb = None
+while mydb is None:
+    try:
+        mydb = mysql.connector.connect(
+            host = parameters['mysql_host'],
+            port = parameters['mysql_host_port'],
+            user = "admin",
+            passwd = parameters['mysql_password'],
+            database = parameters['mysql_database'],
+            auth_plugin="mysql_native_password"
+        )
+    except Exception as e:
+        print(e, flush=True)
+        time.sleep(10)
 print('Connected to DB\nClearing table subs')
 mycursor = mydb.cursor()
 sql = 'TRUNCATE TABLE subs'

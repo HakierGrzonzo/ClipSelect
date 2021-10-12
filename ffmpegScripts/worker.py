@@ -55,7 +55,7 @@ def doWork():
     cursor.execute(sql, (process_count, ))
     work = cursor.fetchall()
     if len(work) > 0:
-        print('processing {} queries'.format(len(work)))
+        print('processing {} queries'.format(len(work)), flush=True)
         sql = 'UPDATE jobs SET status = 1, result_filepath = %s WHERE gif_id = %s'
         paths = workers.map(processGif, work)
         for path in paths:
@@ -74,7 +74,7 @@ try:
         try:
             doWork()
         except Exception as e:
-            print(e)
+            print(e, flush=True)
             print("try to do that again")
             time.sleep(10)
 
