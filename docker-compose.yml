@@ -2,40 +2,30 @@ version: "3.2"
 
 services:
   site:
-    build:
-      dockerfile: ./Dockerfile.app
-      context: .
+    image: localhost:5000/clip_site
     restart: always
     depends_on:
       - "db"
     ports:
-      - "5000:80"
+      - "5081:80"
     volumes:
       - "clipdb:/app/app/static/ClipSelectDB"
   db:
-    build:
-      dockerfile: ./Dockerfile.mysql
-      context: .
+    image: localhost:5000/clip_db
     restart: always
-    ports:
-      - "3306:3306"
     volumes:
       - "mysqldb:/var/lib/mysql"
     environment:
       MYSQL_ROOT_PASSWORD: plsnohack
   worker:
-    build:
-      dockerfile: ./Dockerfile.worker
-      context: .
+    image: localhost:5000/clip_worker
     restart: always
     depends_on:
       - "db"
     volumes:
       - "clipdb:/ClipSelectDB"
   importer:
-    build:
-      dockerfile: ./Dockerfile.importer
-      context: .
+    image: localhost:5000/clip_importer
     restart: on-failure
     depends_on:
       - "db"
