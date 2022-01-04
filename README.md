@@ -2,7 +2,7 @@
 
 A website that generates gifs based on quotes found in subtitles.
 
-Currently hosted [here](https://grzegorzkoperwas.site) on a **docker swarm** cluster in my basement. Because overengineering is my jam.
+Currently hosted [here](https://clip.grzegorzkoperwas.site) on a **docker swarm** cluster in my basement. Because overengineering is my jam.
 
 ---------------
 
